@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import Header from "./Header.vue";
-import Main from "./Main.vue";
+import Header from "./components/Header.vue";
+import Main from "./components/Main.vue";
 
 export default {
   name: "App",
@@ -22,6 +22,5 @@ export default {
 @import "~bootstrap/scss/bootstrap";
 #app {
   background-color: #1E2D3B;
-  height: 100vh;
 }
 </style>
