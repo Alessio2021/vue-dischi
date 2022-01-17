@@ -18,6 +18,8 @@ export default {
 
 <style lang="scss" scoped>
     main {
-
+        .container-60 {
+            
+        }
     }
 </style>
