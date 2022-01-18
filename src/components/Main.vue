@@ -3,7 +3,10 @@
     <div class="container-60">
         <div  v-if="cards">
             <div class="row text-center pt-4">
-                <div class="col">
+                <Search 
+                    @doSelect="getSearch($event)"
+                />
+                <!-- <div class="col">
                     <label class="text-light" for="level">Genre:</label>
                     <select v-model="selectValue" @change="getSearch" name="genre" id="select" class="ms-2 btn btn-primary">
                         <option value="All">All</option>
@@ -12,7 +15,7 @@
                         <option value="Jazz">Jazz</option>
                         <option value="Metal">Metal</option>
                     </select>
-                </div>
+                </div> -->
             </div>
             <div class="row row-cols-5 px-5 pt-5">
                 <Card 
@@ -37,23 +40,26 @@
 <script>
 import Card from './Card.vue';
 import axios from 'axios';
+import Search from './Search.vue';
 
 export default {
     name: 'Main',
     components: {
         Card,
+        Search,
     },
     data() {
         return {
             cards: null,
             genre: null,
             selectValue: 'All',
+            selectArtist: 'All',
         }
     },
     mounted() {
         setTimeout(() => {
             this.getCards();
-        }, 3000);
+        }, 2000);
     },
     methods: {
         getCards() {
@@ -66,12 +72,12 @@ export default {
                 console.log(error);
             });
         },
-        getSearch(){
+        getSearch(text){
             this.cards = this.genre
-            if (this.selectValue !== 'All') {
-                this.cards = this.genre.filter(element => element.genre === this.selectValue);
+            if (text !== 'All') {
+                this.cards = this.genre.filter(element => element.genre === text);
             }
-        }
+        },
     },
 }
 </script>
