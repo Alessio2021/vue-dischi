@@ -1,7 +1,17 @@
 .<template>
   <main>
     <div class="container-60">
-        <div class="row row-cols-5 p-5">
+        <div class="row text-center pt-4">
+            <div class="col d-grid gap-2 col-6 mx-auto">
+                <select name="genre" id="select" class="btn btn-primary">
+                    <option value="rock">Rock</option>
+                    <option value="pop">Pop</option>
+                    <option value="jazz">Jazz</option>
+                    <option value="metal">Metal</option>
+                </select>
+            </div>
+        </div>
+        <div class="row row-cols-5 px-5 pt-5">
             <Card 
                 v-for="(card, index) in cards"
                 :key="index"
@@ -27,6 +37,7 @@ export default {
     data() {
         return {
             cards: [],
+            filtered: [],
         }
     },
     mounted() {
