@@ -1,27 +1,34 @@
 .<template>
   <main>
     <div class="container-60">
-        <div class="row text-center pt-4">
-            <div class="col">
-                <label class="text-light" for="level">Genre:</label>
-                <select v-model="selectValue" @change="getSearch" name="genre" id="select" class="ms-2 btn btn-primary">
-                    <option value="All">All</option>
-                    <option value="Rock">Rock</option>
-                    <option value="Pop">Pop</option>
-                    <option value="Jazz">Jazz</option>
-                    <option value="Metal">Metal</option>
-                </select>
+        <div  v-if="cards">
+            <div class="row text-center pt-4">
+                <div class="col">
+                    <label class="text-light" for="level">Genre:</label>
+                    <select v-model="selectValue" @change="getSearch" name="genre" id="select" class="ms-2 btn btn-primary">
+                        <option value="All">All</option>
+                        <option value="Rock">Rock</option>
+                        <option value="Pop">Pop</option>
+                        <option value="Jazz">Jazz</option>
+                        <option value="Metal">Metal</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row row-cols-5 px-5 pt-5">
+                <Card 
+                    v-for="(card, index) in cards"
+                    :key="index"
+                    :img="card.poster"
+                    :title="card.title"
+                    :author="card.author"
+                    :year="card.year"
+                />
             </div>
         </div>
-        <div class="row row-cols-5 px-5 pt-5">
-            <Card 
-                v-for="(card, index) in cards"
-                :key="index"
-                :img="card.poster"
-                :title="card.title"
-                :author="card.author"
-                :year="card.year"
-            />
+        <div v-else class="row"> 
+            <div class="col d-flex justify-content-center p-5">
+                <h1 class="text-light">Loading . . .</h1>
+            </div>
         </div>
     </div>
   </main>
@@ -44,7 +51,9 @@ export default {
         }
     },
     mounted() {
-        this.getCards();
+        setTimeout(() => {
+            this.getCards();
+        }, 3000);
     },
     methods: {
         getCards() {
