@@ -21,6 +21,6 @@ export default {
 <style lang="scss">
 @import "~bootstrap/scss/bootstrap";
 #app {
-  background-color: #1E2D3B;
+  
 }
 </style>
