@@ -30,7 +30,7 @@
         </div>
         <div v-else class="row"> 
             <div class="col d-flex justify-content-center p-5">
-                <h1 class="text-light">Loading . . .</h1>
+                <h1 class="text-light"><font-awesome-icon class="me-3" icon="spinner" pulse />Loading . . .</h1>
             </div>
         </div>
     </div>
@@ -51,7 +51,7 @@ export default {
     data() {
         return {
             cards: null,
-            genre: null,
+            cardsFixed: null,
             selectValue: 'All',
             selectArtist: 'All',
         }
@@ -66,16 +66,16 @@ export default {
             axios.get('https://flynn.boolean.careers/exercises/api/array/music')
             .then((result) => {
                 this.cards = result.data.response;
-                this.genre = result.data.response;
+                this.cardsFixed = result.data.response;
             })
             .catch((error) => {
                 console.log(error);
             });
         },
         getSearch(text){
-            this.cards = this.genre
+            this.cards = this.cardsFixed
             if (text !== 'All') {
-                this.cards = this.genre.filter(element => element.genre === text);
+                this.cards = this.cardsFixed.filter(element => element.genre === text);
             }
         },
     },
